@@ -61,9 +61,9 @@ end)
 ### **Sequential Results**
 
 ```
-Time in seconds: 2.586136
-Time in seconds: 2.583493
-Time in seconds: 2.578344
+Time in seconds: 1.586709
+Time in seconds: 1.480552
+Time in seconds: 1.578452
 ```
 
 ## **Analysis**
@@ -71,8 +71,7 @@ Time in seconds: 2.578344
 Given the results, we can see that the parallel version of the function is
 faster than the sequential version in all runs. It is also worth noting that the
 computer running the tests has 8 cores (MacBook Air M2 512GB SSD 24GB RAM), so
-the parallel version of the function is able to take advantage of all the cores
-when running `Hw.sum_primes_parallel(5_000_000, 8)`.
+the parallel version of the function is able to take advantage of all the cores.
 
 # Speedup analysis
 
@@ -87,12 +86,12 @@ Where:
 ## **Speedup**
 
 $$
-\begin{equation} S_p = \frac{2.5826576667}{0.640359} = 4.0331402646
+\begin{equation} S_p = \frac{1.548571}{0.158763} = 9.7539792017
 \end{equation}
 $$
 
 ## Conclusion
 
-The speedup of the parallel version of the function is 4.0331402646, which means
-that the parallel version of the function is 4 times faster than the sequential
+The speedup of the parallel version of the function is 9.7539792017, which means
+that the parallel version of the function is almost 10 times faster than the sequential
 version of the function.

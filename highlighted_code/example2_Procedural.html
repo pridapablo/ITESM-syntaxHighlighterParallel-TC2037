@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Highlighter</title>
+    <style>
+        .string { color: green; }
+        .comment { color: gray; }
+        .keyword { color: blue; }
+        .number { color: purple; }
+        .operator { color: red; }
+        .boolean { color: orange; }
+        .function { color: brown; }
+        .parenthesis { color: brown; }
+        .method { color: brown; }
+        .decorator { color: grey; }
+    </style>
+</head>
+<body>
+<pre>
+<span class="comment"># import the necessary modules</span>
+<span class="keyword">import</span> random
+<span class="keyword">import</span> statistics
+
+<span class="comment"># define a list of random numbers</span>
+numbers = [random.<span class="method">randint</span><span class="parenthesis">(</span><span class="number">0</span>, <span class="number">100</span><span class="parenthesis">)</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range<span class="parenthesis">(</span><span class="number">20</span><span class="parenthesis">)</span>]
+
+<span class="keyword">def</span> display_numbers<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>:
+    print<span class="parenthesis">(</span>f<span class="string">"The list of numbers: {numbers}"</span><span class="parenthesis">)</span>
+
+<span class="keyword">def</span> compute_average<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>:
+    avg = statistics.<span class="method">mean</span><span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>
+    print<span class="parenthesis">(</span>f<span class="string">"The average of the numbers: {avg}"</span><span class="parenthesis">)</span>
+
+<span class="keyword">def</span> find_max<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>:
+    max_number = max<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>
+    print<span class="parenthesis">(</span>f<span class="string">"The maximum number in the list: {max_number}"</span><span class="parenthesis">)</span>
+
+<span class="keyword">def</span> find_min<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>:
+    min_number = min<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>
+    print<span class="parenthesis">(</span>f<span class="string">"The minimum number in the list: {min_number}"</span><span class="parenthesis">)</span>
+
+<span class="comment"># driver code</span>
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    display_numbers<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>
+    compute_average<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>
+    find_max<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>
+    find_min<span class="parenthesis">(</span>numbers<span class="parenthesis">)</span>
+</pre>
+</body>
+</html>

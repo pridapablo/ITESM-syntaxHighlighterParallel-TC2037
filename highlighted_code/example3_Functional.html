@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Highlighter</title>
+    <style>
+        .string { color: green; }
+        .comment { color: gray; }
+        .keyword { color: blue; }
+        .number { color: purple; }
+        .operator { color: red; }
+        .boolean { color: orange; }
+        .function { color: brown; }
+        .parenthesis { color: brown; }
+        .method { color: brown; }
+        .decorator { color: grey; }
+    </style>
+</head>
+<body>
+<pre>
+<span class="keyword">import</span> json
+<span class="keyword">from</span> functools <span class="keyword">import</span> reduce
+
+<span class="comment"># List of dictionaries</span>
+data = [
+    {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>, <span class="string">"city"</span>: <span class="string">"New York"</span>},
+    {<span class="string">"name"</span>: <span class="string">"Bob"</span>, <span class="string">"age"</span>: <span class="number">30</span>, <span class="string">"city"</span>: <span class="string">"Chicago"</span>},
+    {<span class="string">"name"</span>: <span class="string">"Charlie"</span>, <span class="string">"age"</span>: <span class="number">35</span>, <span class="string">"city"</span>: <span class="string">"San Francisco"</span>},
+]
+
+<span class="comment"># Convert list into JSON</span>
+json_data = json.<span class="method">dumps</span><span class="parenthesis">(</span>data<span class="parenthesis">)</span>
+print<span class="parenthesis">(</span>f<span class="string">"JSON data: {json_data}"</span><span class="parenthesis">)</span>
+
+<span class="comment"># Load data from JSON</span>
+loaded_data = json.<span class="method">loads</span><span class="parenthesis">(</span>json_data<span class="parenthesis">)</span>
+
+<span class="comment"># Use map() to get all names</span>
+names = list<span class="parenthesis">(</span>map<span class="parenthesis">(</span>lambda x: x[<span class="string">'name'</span>], loaded_data<span class="parenthesis">)</span><span class="parenthesis">)</span>
+print<span class="parenthesis">(</span>f<span class="string">"Names: {names}"</span><span class="parenthesis">)</span>
+
+<span class="comment"># Use filter() to get data of people older than 30</span>
+older_than_<span class="number">30</span> = list<span class="parenthesis">(</span>filter<span class="parenthesis">(</span>lambda x: x[<span class="string">'age'</span>] > <span class="number">30</span>, loaded_data<span class="parenthesis">)</span><span class="parenthesis">)</span>
+print<span class="parenthesis">(</span>f<span class="string">"People older than 30: {older_than_30}"</span><span class="parenthesis">)</span>
+
+<span class="comment"># Use reduce() to find the longest name</span>
+longest_name = reduce<span class="parenthesis">(</span>lambda a, b: a <span class="keyword">if</span> len<span class="parenthesis">(</span>a[<span class="string">'name'</span>]<span class="parenthesis">)</span> > len<span class="parenthesis">(</span>b[<span class="string">'name'</span>]<span class="parenthesis">)</span> <span class="keyword">else</span> b, loaded_data<span class="parenthesis">)</span>
+print<span class="parenthesis">(</span>f<span class="string">"Person with the longest name: {longest_name[<span class="string">'name'</span>]}"</span><span class="parenthesis">)</span>
+</pre>
+</body>
+</html>

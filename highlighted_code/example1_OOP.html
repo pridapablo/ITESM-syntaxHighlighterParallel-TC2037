@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Highlighter</title>
+    <style>
+        .string { color: green; }
+        .comment { color: gray; }
+        .keyword { color: blue; }
+        .number { color: purple; }
+        .operator { color: red; }
+        .boolean { color: orange; }
+        .function { color: brown; }
+        .parenthesis { color: brown; }
+        .method { color: brown; }
+        .decorator { color: grey; }
+    </style>
+</head>
+<body>
+<pre>
+<span class="keyword">import</span> random
+
+class Restaurant:
+    <span class="keyword">def</span> __init__<span class="parenthesis">(</span>self, name, capacity<span class="parenthesis">)</span>:
+        self.<span class="method">name</span> = name
+        self.<span class="method">capacity</span> = capacity
+        self.<span class="method">reservations</span> = []
+
+    <span class="keyword">def</span> reserve<span class="parenthesis">(</span>self, party_size<span class="parenthesis">)</span>:
+        <span class="keyword">if</span> self.<span class="method">available_seats</span><span class="parenthesis">(</span><span class="parenthesis">)</span> < party_size:
+            <span class="keyword">return</span> False
+        else:
+            self.<span class="method">reservations</span>.<span class="method">append</span><span class="parenthesis">(</span>party_size<span class="parenthesis">)</span>
+            <span class="keyword">return</span> True
+
+    <span class="keyword">def</span> available_seats<span class="parenthesis">(</span>self<span class="parenthesis">)</span>:
+        <span class="keyword">return</span> self.<span class="method">capacity</span> <span class="operator">-</span> sum<span class="parenthesis">(</span>self.<span class="method">reservations</span><span class="parenthesis">)</span>
+
+
+class Customer:
+    <span class="keyword">def</span> __init__<span class="parenthesis">(</span>self, name<span class="parenthesis">)</span>:
+        self.<span class="method">name</span> = name
+
+    <span class="keyword">def</span> make_reservation<span class="parenthesis">(</span>self, restaurant, party_size<span class="parenthesis">)</span>:
+        <span class="keyword">if</span> restaurant.<span class="method">reserve</span><span class="parenthesis">(</span>party_size<span class="parenthesis">)</span>:
+            print<span class="parenthesis">(</span>f<span class="string">"Reservation for {self.name} at {restaurant.name} confirmed!"</span><span class="parenthesis">)</span>
+        else:
+            print<span class="parenthesis">(</span>f<span class="string">"Sorry, {self.name}. No available space at {restaurant.name}."</span><span class="parenthesis">)</span>
+
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="comment"># Restaurants</span>
+    taco_joint = Restaurant<span class="parenthesis">(</span><span class="string">"Taco Joint"</span>, <span class="number">50</span><span class="parenthesis">)</span>
+    sushi_spot = Restaurant<span class="parenthesis">(</span><span class="string">"Sushi Spot"</span>, <span class="number">75</span><span class="parenthesis">)</span>
+
+    <span class="comment"># Customers</span>
+    alice = Customer<span class="parenthesis">(</span><span class="string">"Alice"</span><span class="parenthesis">)</span>
+    bob = Customer<span class="parenthesis">(</span><span class="string">"Bob"</span><span class="parenthesis">)</span>
+
+    <span class="comment"># Attempt to make reservations</span>
+    alice.<span class="method">make_reservation</span><span class="parenthesis">(</span>taco_joint, <span class="number">20</span><span class="parenthesis">)</span>
+    bob.<span class="method">make_reservation</span><span class="parenthesis">(</span>sushi_spot, <span class="number">80</span><span class="parenthesis">)</span>
+</pre>
+</body>
+</html>

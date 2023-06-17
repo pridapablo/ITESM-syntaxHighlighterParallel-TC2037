@@ -22,7 +22,7 @@ defmodule Syntax do
       |> Stream.map(&helperFun/1)
 
     # Create an HTML file with the same base file name
-    {:ok, file} = File.open("HighlightedCode_Seq/#{base_file_name}.html", [:write])
+    {:ok, file} = File.open("highlighted_code/#{base_file_name}.html", [:write])
 
     # Add header with css styling
     IO.write(file, parse_html_header())
@@ -228,21 +228,3 @@ defmodule Syntax do
     """
   end
 end
-
-# Helper module to time the execution of a function (for speedup comparison)
-defmodule Timing do
-  def time_execution(fun) do
-    :timer.tc(fun)
-    # Get the time in microseconds
-    |> elem(0)
-    # Convert to seconds
-    |> Kernel./(1_000_000)
-    |> IO.inspect(label: "Time in seconds")
-  end
-end
-
-Timing.time_execution(fn ->
-  Syntax.highlight("PythonFiles/example1_OOP.py")
-  Syntax.highlight("PythonFiles/example2_Procedural.py")
-  Syntax.highlight("PythonFiles/example3_Functional.py")
-end)

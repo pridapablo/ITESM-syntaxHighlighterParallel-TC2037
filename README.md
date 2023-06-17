@@ -33,13 +33,13 @@ git clone https://github.com/pridapablo/syntaxHighlighterParallel.git
 cd syntaxHighlighterParallel
 ```
 
-3. Run the highlighter module.
+3. Run the highlighter module (Parallel).
 
 ```bash
 iex ParalelPrettier.exs
 ```
 
-4. To highlight a python file, use the following Elixir command in your terminal (while in the iex session):
+To highlight a python file, use the following Elixir command in your terminal (while in the iex session):
 
 ```elixir
 SyntaxParallel.highlight("<directory-of-python-files>")
@@ -51,13 +51,33 @@ Replace <directory-of-python-files> with the name of the Python file directory y
 SyntaxParallel.highlight("PythonFiles")
 ```
 
+3.1 You can also run the highlighter module (Sequential).
+
+```bash
+iex Prettier.exs
+```
+
+To highlight a python file, use the following Elixir command in your terminal (while in the iex session):
+
+```elixir
+Syntax.highlight("<your-python-file.py>")
+```
+
+Replace <your-python-file.py> with the name of the Python file you want to analyze. For example:
+
+```elixir
+Syntax.highlight("python_examples/example1_OOP.py")
+```
+
 The current repository contains three Python files that you can use to test the syntax highlighter (all three files are in the PythonFiles/ directory)
 
 - example1_OOP.py
 - example2_Procedural.py
 - example3_Functional.py
 
-4. The program will create an HTML file in the root directory with the same base name as your Python file. For example, if your Python file was named example.py, the output file will be example.py.html.
+4. The program parallel will create an HTML file in the root directory with the same base name as your Python file. For example, if your Python file was named example.py, the output file will be example.py.html.
+
+4.1 The program sequential will create an HTML file in the /highlighted_code directory with the same base name as your Python file. For example, if your Python file was named example.py, the output file will be example.html.
 
 5. Open the generated HTML file in your web browser to see the highlighted Python code.
 
@@ -68,6 +88,8 @@ There is a OnePager.md file at the root of this repository. It contains:
 - Reflections on the proposed solution, the implemented algorithms, and the execution time of these algorithms.
 
 - A comparison of the execution time of the parallel and sequential versions of the syntax highlighter.
+
+- A speedup analysis of the parallel version of the syntax highlighter.
 
 ## License
 

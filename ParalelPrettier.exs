@@ -1,42 +1,59 @@
 defmodule SyntaxParallel do
   def highlight(directory_path) do
+    # get current working directory
     {:ok, path} = :file.get_cwd()
     IO.puts(path)
 
     read_files_from_folder(directory_path)
+    # run highlight_file in parallel
     |> Task.async_stream(&highlight_file/1)
     |> Enum.each(fn
+      # result is the file path
       {:ok, result} -> IO.puts("File processed successfully")
+      # error is the error reason
       {:error, error} -> IO.puts("Error processing file")
+      # other is unexpected result
       other -> IO.puts("Unexpected result")
     end)
   end
 
+  # read all files from a folder
   defp read_files_from_folder(directory_path) do
+    # list all files from the directory
     File.ls!(directory_path)
     |> Enum.map(fn file -> Path.join(directory_path, file) end)
   end
 
+  # split the file into lines to process them
   defp highlight_file(file) do
+    # run the task in parallel
     Task.async(fn ->
+      # get the full path of the file
       expanded_path = Path.expand(file)
 
       IO.puts("Reading file: #{expanded_path}")
 
+      # read the file
       case File.read(expanded_path) do
         {:error, _reason} ->
+          # if the file can't be read, return
           IO.puts("Failed to read file: #{expanded_path}")
           {:error, :read_failure}
 
         {:ok, text} ->
           highlighted_text =
             text
+            # split the file into lines
             |> String.split(~r/\n/, trim: false)
+            # run helperFun in parallel
             |> Enum.map(&helperFun/1)
+            # join the lines back together
             |> Enum.join("\n")
 
+          # build the html with the highlighted text
           html_content = build_html_content(highlighted_text)
 
+          # saves the html file
           case File.write("#{Path.basename(expanded_path)}.html", html_content) do
             :ok -> file
             {:error, reason} -> {:error, reason}
@@ -45,11 +62,15 @@ defmodule SyntaxParallel do
     end)
   end
 
+  # DFA detect the type of the character and adds the html <span> tag that corresponds to the type of the character
+  # the paramterers are: charDetector(List of characters, string to return, status of the previous character, accumulator of characters)
   defp charDetector([head | tail], list, status, val) do
+    # if the list is empty, return the list
     if tail == [] do
       list
     else
       case head do
+        # if the status is string wait fot the next " or '
         a when status == "string" ->
           if status == "string" && a in ["\"", "\'"] do
             charDetector(
@@ -62,6 +83,7 @@ defmodule SyntaxParallel do
             charDetector(tail, list, "string", val <> head)
           end
 
+        # if the status is comment wait fot the next •
         a when status == "comment" ->
           if head == "•" do
             charDetector(
@@ -74,6 +96,7 @@ defmodule SyntaxParallel do
             charDetector(tail, list, "comment", val <> head)
           end
 
+        # if the status is method wait fot the next space, ( or .
         a when status == "method" ->
           if a in [" ", "(", "."] do
             charDetector(
@@ -86,6 +109,7 @@ defmodule SyntaxParallel do
             charDetector(tail, list, "method", val <> head)
           end
 
+        # if the status is decorator wait fot the next space
         a when status == "decorator" ->
           if a == " " do
             charDetector(
@@ -98,10 +122,12 @@ defmodule SyntaxParallel do
             charDetector(tail, list, "decorator", val <> head)
           end
 
+        # if the char is " or ' change the status to string
         a when a in ["\"", "\'"] ->
           charDetector(tail, list, "string", val <> head)
 
         "(" ->
+          # if the status is text and the ( to the list
           if status == "text" do
             charDetector(
               tail,
@@ -114,6 +140,7 @@ defmodule SyntaxParallel do
               ""
             )
           else
+            # if the status is not text add only the (
             charDetector(
               tail,
               list <> "<span class=\"parenthesis\">" <> head <> "</span>",
@@ -123,12 +150,17 @@ defmodule SyntaxParallel do
           end
 
         "#" ->
+          # if the char is # change the status to comment
           charDetector(tail, list, "comment", val <> head)
 
+        # if the char is a number
         a when a in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] ->
           charDetector(tail, list <> "<span class=\"number\">" <> head <> "</span>", "", "")
 
+        # if the char is a parenthesis
         a when a in ["{", "}", "[", "]", ")"] ->
+          # if the status is text and the parenthesis to the list
+          # if the status is not text add only the parenthesis
           if status == "text" do
             charDetector(
               tail,
@@ -149,7 +181,10 @@ defmodule SyntaxParallel do
             )
           end
 
+        # if the char is an operator
         a when a in [":", ",", ";", "+", "-", "*", "/", "%", "^"] ->
+          # if the status is text and the operator to the list
+          # if the status is not text add only the operator
           if status == "text" do
             charDetector(
               tail,
@@ -173,7 +208,10 @@ defmodule SyntaxParallel do
             ""
           )
 
+        # if the char is = or !
         a when a in ["=", "!"] ->
+          # if the status is text and the operator to the list
+          # if the status is not text add only the operator
           if status == "text" do
             charDetector(
               tail,
@@ -190,6 +228,8 @@ defmodule SyntaxParallel do
           end
 
         "." ->
+          # if the status is text and the . to the list
+          # if the status is not text add only the .
           if status == "text" do
             charDetector(
               tail,
@@ -201,6 +241,7 @@ defmodule SyntaxParallel do
             charDetector(tail, list <> "<span class=\"number\">" <> head <> "</span>", "", "")
           end
 
+        # if the char is t or f
         a when val in ["true", "false"] ->
           charDetector(
             tail,
@@ -209,6 +250,7 @@ defmodule SyntaxParallel do
             ""
           )
 
+        # if the char is a keyword inside the list
         a
         when val in [
                "print",
@@ -225,6 +267,7 @@ defmodule SyntaxParallel do
                "import",
                "break"
              ] ->
+          # add the keyword to the list
           charDetector(
             tail,
             list <> "<span class=\"keyword\">" <> val <> " </span>",
@@ -233,12 +276,15 @@ defmodule SyntaxParallel do
           )
 
         " " ->
+          # if the char is a space and the val is not empty add the val to the list
+          # if the char is a space and the val is empty add a space to the list
           if val != "" do
             charDetector(tail, list <> "<span class=\"text\">" <> val <> " </span>", "", "")
           else
             charDetector(tail, list <> "<span> </span>", "", "")
           end
 
+        # if the char is not any of the above add it to the val and change status to text
         _ ->
           charDetector(tail, list, "text", val <> head)
       end
@@ -294,9 +340,3 @@ defmodule Timing do
     |> IO.inspect(label: "Time in seconds")
   end
 end
-
-# Syntaxhighlighter.highlight("PythonFiles")
-
-Timing.time_execution(fn ->
-  SyntaxParallel.highlight("PythonFiles")
-end)
