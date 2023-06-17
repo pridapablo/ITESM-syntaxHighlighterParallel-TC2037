@@ -41,12 +41,9 @@ end)
 ### **Parallel Results**
 
 ```
-Parallel sum result 1: 838596693108
-Time in seconds: 0.64019
-Parallel sum result 2: 838596693108
-Time in seconds: 0.626209
-Parallel sum result 3: 838596693108
-Time in seconds: 0.654678
+Time in seconds: 0.160975
+Time in seconds: 0.157837
+Time in seconds: 0.157477
 ```
 
 ## **Sequential**
@@ -64,11 +61,8 @@ end)
 ### **Sequential Results**
 
 ```
-Sequential sum result 1: 838596693108
 Time in seconds: 2.586136
-Sequential sum result 2: 838596693108
 Time in seconds: 2.583493
-Sequential sum result 3: 838596693108
 Time in seconds: 2.578344
 ```
 
