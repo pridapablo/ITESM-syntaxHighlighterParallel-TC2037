@@ -103,7 +103,7 @@ defmodule Syntax do
     highlight_line(line, Enum.uniq(charDetector(String.graphemes(line <> " "), [], "")))
   end
 
-  defp charDetector([head | tail], list, _status) when tail == [] do
+  defp charDetector([_head | tail], list, _status) when tail == [] do
     # Pattern match for the end of the line.
     if Enum.member?(list, "string") do
       # Run the string regex first
