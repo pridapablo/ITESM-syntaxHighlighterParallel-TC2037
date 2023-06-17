@@ -1,4 +1,4 @@
-defmodule Syntaxhighlighter do
+defmodule SyntaxParallel do
   def highlight(directory_path) do
     {:ok, path} = :file.get_cwd()
     IO.puts(path)
@@ -6,9 +6,9 @@ defmodule Syntaxhighlighter do
     read_files_from_folder(directory_path)
     |> Task.async_stream(&highlight_file/1)
     |> Enum.each(fn
-      {:ok, result} -> IO.puts("File processed successfully: #{result}")
-      {:error, error} -> IO.puts("Error processing file: #{inspect(error)}")
-      task when is_struct(task, Task) -> IO.puts("Task error: #{inspect(task)}")
+      {:ok, result} -> IO.puts("File processed successfully")
+      {:error, error} -> IO.puts("Error processing file")
+      other -> IO.puts("Unexpected result")
     end)
   end
 
