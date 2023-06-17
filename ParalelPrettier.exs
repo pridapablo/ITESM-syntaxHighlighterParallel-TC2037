@@ -8,7 +8,6 @@ defmodule Syntaxhighlighter do
     |> Enum.each(fn
       {:ok, result} -> IO.puts("File processed successfully: #{result}")
       {:error, error} -> IO.puts("Error processing file: #{inspect(error)}")
-      # Added this line
       task when is_struct(task, Task) -> IO.puts("Task error: #{inspect(task)}")
     end)
   end
@@ -284,4 +283,20 @@ defmodule Syntaxhighlighter do
   end
 end
 
-Syntaxhighlighter.highlight("PythonFiles")
+# Helper module to time the execution of a function (for speedup comparison)
+defmodule Timing do
+  def time_execution(fun) do
+    :timer.tc(fun)
+    # Get the time in microseconds
+    |> elem(0)
+    # Convert to seconds
+    |> Kernel./(1_000_000)
+    |> IO.inspect(label: "Time in seconds")
+  end
+end
+
+# Syntaxhighlighter.highlight("PythonFiles")
+
+Timing.time_execution(fn ->
+  Syntaxhighlighter.highlight("PythonFiles")
+end)
