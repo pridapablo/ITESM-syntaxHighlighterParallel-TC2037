@@ -1,6 +1,4 @@
-# Parallel and Sequential Programming
-
-## Activity: 5.2 - Analysis of the performance of a parallel program
+# Parallel and Sequential Programming (Lexer)
 
 ### By:
 
@@ -95,3 +93,7 @@ $$
 The speedup of the parallel version of the function is 9.7539792017, which means
 that the parallel version of the function is almost 10 times faster than the sequential
 version of the function.
+
+# Ethical Implications
+
+The most important ethical implication of this activity is the fact that more efficient programs can be developed using parallel programming. This means that the same amount of work can be done in less time, which can result in more energy-efficient programs. This is important because the energy consumption of computers is a big problem nowadays, and it is expected to increase in the future. Therefore, parallel programming can help reduce the energy consumption of computers.
