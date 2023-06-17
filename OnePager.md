@@ -22,13 +22,19 @@ two different versions of the function. Considering that the computer may be
 running other processes at the same time, we run the program 3 times and take
 the average of the results.
 
-We ran the following script in a for loop for each function:
+We ran the following script in a for loop for each function version:
 
 ## **Parallel**
 
 ```elixir
+iex ParalelPrettier.exs
+```
+
+```elixir
 Timing.time_execution(fn ->
-  Syntaxhighlighter.highlight("PythonFiles")
+  Syntax.highlight("PythonFiles/example1_OOP.py")
+  Syntax.highlight("PythonFiles/example2_Procedural.py")
+  Syntax.highlight("PythonFiles/example3_Functional.py")
 end)
 ```
 
@@ -46,8 +52,12 @@ Time in seconds: 0.654678
 ## **Sequential**
 
 ```elixir
+iex Prettier.exs
+```
+
+```elixir
 Timing.time_execution(fn ->
-  IO.inspect(Hw.sum_primes(5_000_000), label: "Sequential sum result X")
+  Syntaxhighlighter.highlight("PythonFiles")
 end)
 ```
 

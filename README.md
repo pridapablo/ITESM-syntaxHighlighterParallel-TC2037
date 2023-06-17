@@ -36,19 +36,19 @@ cd syntaxHighlighterParallel
 3. Run the highlighter module.
 
 ```bash
-iex syntaxHighlighterParallel.exs
+iex ParalelPrettier.exs
 ```
 
 4. To highlight a python file, use the following Elixir command in your terminal (while in the iex session):
 
 ```elixir
-Syntax.highlight("<directory-of-python-files>")
+SyntaxParallel.highlight("<directory-of-python-files>")
 ```
 
 Replace <directory-of-python-files> with the name of the Python file directory you want to analyze. For example:
 
 ```elixir
-Syntax.highlight("PythonFiles")
+SyntaxParallel.highlight("PythonFiles")
 ```
 
 The current repository contains three Python files that you can use to test the syntax highlighter (all three files are in the PythonFiles/ directory)
@@ -67,9 +67,7 @@ There is a OnePager.md file at the root of this repository. It contains:
 
 - Reflections on the proposed solution, the implemented algorithms, and the execution time of these algorithms.
 
-- Calculation of the algorithm's complexity based on the number of iterations and comparison with the estimated time mentioned above.
-
-- Conclusions drawn from the reflections in points 1 and 2. It also includes a brief reflection on the ethical implications that the type of technology developed here could have on society.
+- A comparison of the execution time of the parallel and sequential versions of the syntax highlighter.
 
 ## License
 
