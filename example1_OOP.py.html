@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Highlighter</title>
+    <style>
+        .string { color: green; }
+        .comment { color: gray; }
+        .keyword { color: blue; }
+        .number { color: purple; }
+        .operator { color: red; }
+        .boolean { color: orange; }
+        .function { color: brown; }
+        .parenthesis { color: brown; }
+        .method { color: brown; }
+        .decorator { color: grey; }
+        .variable { color: brown; }
+        .text { color:black }
+    </style>
+</head>
+<body>
+<pre>
+<span class="keyword">import </span><span class="text">random </span>
+<span> </span>
+<span class="text">class </span><span class="text">Restaurant</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="keyword">def </span><span class="function">__init__</span><span class="parenthesis">(</span><span class="text">self</span><span class="operator">,</span><span> </span><span class="text">name</span><span class="operator">,</span><span> </span><span class="text">capacity</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">self</span><span class="text">.name</span><span> </span><span class="operator">=</span><span> </span><span class="text">name </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">self</span><span class="text">.capacity</span><span> </span><span class="operator">=</span><span> </span><span class="text">capacity </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">self</span><span class="text">.reservations</span><span> </span><span class="operator">=</span><span> </span><span class="parenthesis">[</span><span class="parenthesis">]</span><span> </span>
+<span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="keyword">def </span><span class="function">reserve</span><span class="parenthesis">(</span><span class="text">self</span><span class="operator">,</span><span> </span><span class="text">party_size</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">if </span><span class="keyword">self</span><span class="text">.available_seats</span><span class="parenthesis">(</span><span class="parenthesis">)</span><span> </span><span class="text">< </span><span class="text">party_size</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">return </span><span class="text">False </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="text">else</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">self</span><span class="text">.reservations</span><span class="number">.</span><span class="function">append</span><span class="parenthesis">(</span><span class="text">party_size</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">return </span><span class="text">True </span>
+<span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="keyword">def </span><span class="function">available_seats</span><span class="parenthesis">(</span><span class="text">self</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">return </span><span class="keyword">self</span><span class="text">.capacity</span><span> </span><span class="operator">-</span><span> </span><span class="function">sum</span><span class="parenthesis">(</span><span class="keyword">self</span><span class="text">.reservations)</span><span> </span>
+<span> </span>
+<span> </span>
+<span class="text">class </span><span class="text">Customer</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="keyword">def </span><span class="function">__init__</span><span class="parenthesis">(</span><span class="text">self</span><span class="operator">,</span><span> </span><span class="text">name</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">self</span><span class="text">.name</span><span> </span><span class="operator">=</span><span> </span><span class="text">name </span>
+<span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="keyword">def </span><span class="function">make_reservation</span><span class="parenthesis">(</span><span class="text">self</span><span class="operator">,</span><span> </span><span class="text">restaurant</span><span class="operator">,</span><span> </span><span class="text">party_size</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="keyword">if </span><span class="keyword">restaurant</span><span class="text">.reserve</span><span class="parenthesis">(</span><span class="text">party_size</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="function">print</span><span class="parenthesis">(</span><span class="string">f"Reservation for {self.name} at {restaurant.name} confirmed!"</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="text">else</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span> </span><span class="function">print</span><span class="parenthesis">(</span><span class="string">f"Sorry, {self.name}. No available space at {restaurant.name}."</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span> </span>
+<span class="keyword">if </span><span class="text">__name__ </span><span class="operator">=</span><span class="operator">=</span><span> </span><span class="string">"__main__"</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="comment"># Restaurants </span>
+<span> </span><span> </span><span> </span><span> </span><span class="text">taco_joint </span><span class="operator">=</span><span> </span><span class="function">Restaurant</span><span class="parenthesis">(</span><span class="string">"Taco Joint"</span><span class="operator">,</span><span> </span><span class="number">5</span><span class="number">0</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="text">sushi_spot </span><span class="operator">=</span><span> </span><span class="function">Restaurant</span><span class="parenthesis">(</span><span class="string">"Sushi Spot"</span><span class="operator">,</span><span> </span><span class="number">7</span><span class="number">5</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="comment"># Customers </span>
+<span> </span><span> </span><span> </span><span> </span><span class="text">alice </span><span class="operator">=</span><span> </span><span class="function">Customer</span><span class="parenthesis">(</span><span class="string">"Alice"</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="text">bob </span><span class="operator">=</span><span> </span><span class="function">Customer</span><span class="parenthesis">(</span><span class="string">"Bob"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="comment"># Attempt to make reservations </span>
+<span> </span><span> </span><span> </span><span> </span><span class="keyword">alice</span><span class="text">.make_reservation</span><span class="parenthesis">(</span><span class="text">taco_joint</span><span class="operator">,</span><span> </span><span class="number">2</span><span class="number">0</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="keyword">bob</span><span class="text">.make_reservation</span><span class="parenthesis">(</span><span class="text">sushi_spot</span><span class="operator">,</span><span> </span><span class="number">8</span><span class="number">0</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+</pre>
+</body>
+</html>

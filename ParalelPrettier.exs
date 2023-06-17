@@ -8,6 +8,7 @@ defmodule Syntaxhighlighter do
     |> Enum.each(fn
       {:ok, result} -> IO.puts("File processed successfully: #{result}")
       {:error, error} -> IO.puts("Error processing file: #{inspect(error)}")
+      # Added this line
       task when is_struct(task, Task) -> IO.puts("Task error: #{inspect(task)}")
     end)
   end
@@ -50,7 +51,7 @@ defmodule Syntaxhighlighter do
       list
     else
       case head do
-        _ when status == "string" ->
+        a when status == "string" ->
           if status == "string" && a in ["\"", "\'"] do
             charDetector(
               tail,

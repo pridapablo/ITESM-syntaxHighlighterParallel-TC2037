@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Highlighter</title>
+    <style>
+        .string { color: green; }
+        .comment { color: gray; }
+        .keyword { color: blue; }
+        .number { color: purple; }
+        .operator { color: red; }
+        .boolean { color: orange; }
+        .function { color: brown; }
+        .parenthesis { color: brown; }
+        .method { color: brown; }
+        .decorator { color: grey; }
+        .variable { color: brown; }
+        .text { color:black }
+    </style>
+</head>
+<body>
+<pre>
+<span class="keyword">import </span><span class="text">json </span>
+<span class="keyword">from </span><span class="text">functools </span><span class="keyword">import </span><span class="text">reduce </span>
+<span> </span>
+<span class="comment"># List of dictionaries </span>
+<span class="text">data </span><span class="operator">=</span><span> </span><span class="parenthesis">[</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="parenthesis">{</span><span class="string">"name"</span><span class="operator">:</span><span> </span><span class="string">"Alice"</span><span class="operator">,</span><span> </span><span class="string">"age"</span><span class="operator">:</span><span> </span><span class="number">2</span><span class="number">5</span><span class="operator">,</span><span> </span><span class="string">"city"</span><span class="operator">:</span><span> </span><span class="string">"New York"</span><span class="parenthesis">}</span><span class="operator">,</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="parenthesis">{</span><span class="string">"name"</span><span class="operator">:</span><span> </span><span class="string">"Bob"</span><span class="operator">,</span><span> </span><span class="string">"age"</span><span class="operator">:</span><span> </span><span class="number">3</span><span class="number">0</span><span class="operator">,</span><span> </span><span class="string">"city"</span><span class="operator">:</span><span> </span><span class="string">"Chicago"</span><span class="parenthesis">}</span><span class="operator">,</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="parenthesis">{</span><span class="string">"name"</span><span class="operator">:</span><span> </span><span class="string">"Charlie"</span><span class="operator">,</span><span> </span><span class="string">"age"</span><span class="operator">:</span><span> </span><span class="number">3</span><span class="number">5</span><span class="operator">,</span><span> </span><span class="string">"city"</span><span class="operator">:</span><span> </span><span class="string">"San Francisco"</span><span class="parenthesis">}</span><span class="operator">,</span><span> </span>
+<span class="parenthesis">]</span><span> </span>
+<span> </span>
+<span class="comment"># Convert list into JSON </span>
+<span class="text">json_data </span><span class="operator">=</span><span> </span><span class="keyword">json</span><span class="text">.dumps</span><span class="parenthesis">(</span><span class="text">data</span><span class="parenthesis">)</span><span> </span>
+<span class="function">print</span><span class="parenthesis">(</span><span class="string">f"JSON data: {json_data}"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span class="comment"># Load data from JSON </span>
+<span class="text">loaded_data </span><span class="operator">=</span><span> </span><span class="keyword">json</span><span class="text">.loads</span><span class="parenthesis">(</span><span class="text">json_data</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span class="comment"># Use map() to get all names </span>
+<span class="text">names </span><span class="operator">=</span><span> </span><span class="function">list</span><span class="parenthesis">(</span><span class="function">map</span><span class="parenthesis">(</span><span class="text">lambda </span><span class="text">x</span><span class="operator">:</span><span> </span><span class="text">x</span><span class="parenthesis">[</span><span class="string">'name'</span><span class="parenthesis">]</span><span class="operator">,</span><span> </span><span class="text">loaded_data</span><span class="parenthesis">)</span><span class="parenthesis">)</span><span> </span>
+<span class="function">print</span><span class="parenthesis">(</span><span class="string">f"Names: {names}"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span class="comment"># Use filter() to get data of people older than 30 </span>
+<span class="number">3</span><span class="number">0</span><span> </span><span class="operator">=</span><span> </span><span class="function">list</span><span class="parenthesis">(</span><span class="function">filter</span><span class="parenthesis">(</span><span class="text">lambda </span><span class="text">x</span><span class="operator">:</span><span> </span><span class="text">x</span><span class="parenthesis">[</span><span class="string">'age'</span><span class="parenthesis">]</span><span> </span><span class="text">> </span><span class="number">3</span><span class="number">0</span><span class="operator">,</span><span> </span><span class="text">loaded_data</span><span class="parenthesis">)</span><span class="parenthesis">)</span><span> </span>
+<span class="function">print</span><span class="parenthesis">(</span><span class="string">f"People older than 30: {older_than_30}"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span class="comment"># Use reduce() to find the longest name </span>
+<span class="text">longest_name </span><span class="operator">=</span><span> </span><span class="function">reduce</span><span class="parenthesis">(</span><span class="text">lambda </span><span class="text">a</span><span class="operator">,</span><span> </span><span class="text">b</span><span class="operator">:</span><span> </span><span class="text">a </span><span class="keyword">if </span><span class="function">len</span><span class="parenthesis">(</span><span class="text">a</span><span class="parenthesis">[</span><span class="string">'name'</span><span class="parenthesis">]</span><span class="parenthesis">)</span><span> </span><span class="text">> </span><span class="function">len</span><span class="parenthesis">(</span><span class="text">b</span><span class="parenthesis">[</span><span class="string">'name'</span><span class="parenthesis">]</span><span class="parenthesis">)</span><span> </span><span class="keyword">else </span><span class="text">b</span><span class="operator">,</span><span> </span><span class="text">loaded_data</span><span class="parenthesis">)</span><span> </span>
+<span class="function">print</span><span class="parenthesis">(</span><span class="string">f"Person with the longest name: {longest_name['</span><span class="string">name']}"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+</pre>
+</body>
+</html>

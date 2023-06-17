@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Highlighter</title>
+    <style>
+        .string { color: green; }
+        .comment { color: gray; }
+        .keyword { color: blue; }
+        .number { color: purple; }
+        .operator { color: red; }
+        .boolean { color: orange; }
+        .function { color: brown; }
+        .parenthesis { color: brown; }
+        .method { color: brown; }
+        .decorator { color: grey; }
+        .variable { color: brown; }
+        .text { color:black }
+    </style>
+</head>
+<body>
+<pre>
+<span class="comment"># import the necessary modules </span>
+<span class="keyword">import </span><span class="text">random </span>
+<span class="keyword">import </span><span class="text">statistics </span>
+<span> </span>
+<span class="comment"># define a list of random numbers </span>
+<span class="text">numbers </span><span class="operator">=</span><span> </span><span class="parenthesis">[</span><span class="keyword">random</span><span class="text">.randint</span><span class="parenthesis">(</span><span class="number">0</span><span class="operator">,</span><span> </span><span class="number">1</span><span class="number">0</span><span class="number">0</span><span class="parenthesis">)</span><span> </span><span class="keyword">for </span><span class="text">_ </span><span class="text">in </span><span class="function">range</span><span class="parenthesis">(</span><span class="number">2</span><span class="number">0</span><span class="parenthesis">)</span><span class="parenthesis">]</span><span> </span>
+<span> </span>
+<span class="keyword">def </span><span class="function">display_numbers</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="function">print</span><span class="parenthesis">(</span><span class="string">f"The list of numbers: {numbers}"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span class="keyword">def </span><span class="function">compute_average</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="text">avg </span><span class="operator">=</span><span> </span><span class="keyword">statistics</span><span class="text">.mean</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="function">print</span><span class="parenthesis">(</span><span class="string">f"The average of the numbers: {avg}"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span class="keyword">def </span><span class="function">find_max</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="text">max_number </span><span class="operator">=</span><span> </span><span class="function">max</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="function">print</span><span class="parenthesis">(</span><span class="string">f"The maximum number in the list: {max_number}"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span class="keyword">def </span><span class="function">find_min</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="text">min_number </span><span class="operator">=</span><span> </span><span class="function">min</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="function">print</span><span class="parenthesis">(</span><span class="string">f"The minimum number in the list: {min_number}"</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+<span class="comment"># driver code </span>
+<span class="keyword">if </span><span class="text">__name__ </span><span class="operator">=</span><span class="operator">=</span><span> </span><span class="string">"__main__"</span><span class="operator">:</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="function">display_numbers</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="function">compute_average</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="function">find_max</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span> </span>
+<span> </span><span> </span><span> </span><span> </span><span class="function">find_min</span><span class="parenthesis">(</span><span class="text">numbers</span><span class="parenthesis">)</span><span> </span>
+<span> </span>
+</pre>
+</body>
+</html>
