@@ -298,5 +298,5 @@ end
 # Syntaxhighlighter.highlight("PythonFiles")
 
 Timing.time_execution(fn ->
-  Syntaxhighlighter.highlight("PythonFiles")
+  SyntaxParallel.highlight("PythonFiles")
 end)
